@@ -1,0 +1,37 @@
+﻿@using Assignment14Weather.Models
+@model CityWeather
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Model.CityName Weather</title>
+        <meta charset="utf-8" />
+        <link href="~/StyleSheet.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="page-content">
+        <h1>Details</h1>
+        <div class="box w-30 margin-auto">
+            <table class="w-100">
+                <tbody>
+                    <tr>
+                        <td class="w-50 seperator">
+                            <div>
+                                <span class="city-name">@Model.CityName</span><br />
+                                <span class="text-dark-grey time">@Model.DateAndTime.ToShortTimeString()</span>
+                            </div>
+                        </td>
+                        <td class="w-50 temperature-box">
+                            <div class="w-50">
+                                <span class="temperature-text">@Model.TemperatureFahrenheit<span class="remperature-unit">°F</span></span>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href=@($"/")>Back</a>
+        </div>
+        </div>
+    </body>
+</html>

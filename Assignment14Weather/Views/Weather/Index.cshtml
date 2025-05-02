@@ -1,0 +1,63 @@
+﻿@using Assignment14Weather.Models
+@model IEnumerable<CityWeather>
+
+@functions {
+    //method
+    string GetColor(int temperature)
+    {
+        string color = "blue-back";
+        if (temperature >= 44 && temperature <= 74)
+        {
+            color = "green-back";
+        }
+        else if (temperature > 74)
+        {
+            color = "orange-back";
+        }
+
+        return color;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather</title>
+        <meta charset="utf-8"/>
+        <link href="~/StyleSheet.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="page-content">
+            <h1>Weather</h1>
+            <br />
+            <div class="flex">
+            @foreach (var entry in Model)
+            {
+
+                <div class="box @GetColor(entry.TemperatureFahrenheit)">
+                    <table class="w-100">
+                        <tbody>
+                            <tr>
+                                <td class="w-50 seperator">
+                                    <div>
+                                        <span class="city-name">@entry.CityName</span><br />
+                                        <span class="text-dark-grey time">@entry.DateAndTime.ToShortTimeString()</span><br />
+                                        <br />
+                                        <a href=@($"/weather/{entry.CityUniqueCode}")>Details</a>
+                                    </div>
+                                </td>
+                                <td class="w-50 temperature-box">
+                                    <div class="w-50">
+                                        <span class="temperature-text">@entry.TemperatureFahrenheit<span class="remperature-unit">°F</span></span>
+                                       
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+            </div>
+    </div>
+    </body>
+</html>
